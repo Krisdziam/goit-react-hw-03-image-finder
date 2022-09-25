@@ -9,9 +9,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  background-image: url(./img/spacej.jpg);
-  background-position: no-repeat;
-  background-size: cover;
+
 }
 li {
   list-style: none;
@@ -21,10 +19,7 @@ P {
   padding: 0;
   margin: 0;
 }
-h2 {
-  font-size: 25px;
-  text-shadow: 1px 1px 1px rgb(28, 24, 25);
-}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas,
     'Courier New', monospace;
