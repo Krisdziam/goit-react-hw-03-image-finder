@@ -1,14 +1,19 @@
-
-import React, { Component } from 'react'
-
-
+import React, { Component } from 'react';
+import Searchbar from './Searchbar/Searchbar';
 
 export class App extends Component {
-  state = {};
+  state = {
+    images: '',
+  };
+  formSubmitHandler = data => {
+    console.log(data);
+  };
 
   render() {
-    return <>
-    <h1>Image</h1>
-    </>;
+    return (
+      <>
+        <Searchbar onSubmit={this.formSubmitHandler} />
+      </>
+    );
   }
 }
