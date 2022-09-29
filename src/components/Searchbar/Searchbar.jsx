@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import styles from '../Searchbar/Searchbar.module.css'
 export default class Searchbar extends Component {
   state = {
     imageName: '',
@@ -25,7 +25,7 @@ export default class Searchbar extends Component {
   render() {
     return (
       <>
-        <header>
+        <header className={styles.header}>
           <form onSubmit={this.handleSubmitForm}>
             <button type="submit">
               <span>Search</span>
