@@ -10,7 +10,7 @@ import { fetchImages } from './ServiceApi/ServiceApi';
 import styles from './ImageInfo.module.css'
 import { MdOutlinePhotoSizeSelectActual } from "react-icons/md";
 
-import ScrollToTop from "react-scroll-to-top";
+// import ScrollToTop from "react-scroll-to-top";
 
 class ImageInfo extends Component {
   state = {
