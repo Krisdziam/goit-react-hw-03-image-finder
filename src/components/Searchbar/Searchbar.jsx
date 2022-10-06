@@ -10,7 +10,7 @@ export default class Searchbar extends Component {
 
   handleInputChange = e => {
   
-    this.setState({ imageName: e.currentTarget.value.toLowerCase() });
+    this.setState({ imageName: e.currentTarget.value});
   };
 
   handleSubmitForm = e => {
