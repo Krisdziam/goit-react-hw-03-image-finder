@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import styles from '../Searchbar/Searchbar.module.css'
+import { MdTravelExplore } from "react-icons/md";
 
 
 
-export default class Searchbar extends Component {
+ class Searchbar extends Component {
   state = {
     imageName: '',
   };
@@ -34,7 +35,7 @@ export default class Searchbar extends Component {
         <header className={styles.header}>
           <form onSubmit={this.handleSubmitForm}>
             <button type="submit">
-              <span>Search</span>
+              <MdTravelExplore/>
             </button>
 
             <input
@@ -51,3 +52,5 @@ export default class Searchbar extends Component {
     );
   }
 }
+
+export default Searchbar
