@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
-import ImageInfo from './ImageInfo';
+import ImageGallery from './ImageGallery/ImageGallery';
+import ImageGalleryItem from './ImageGalleryItem/ImageGalleryItem';
+import Searchbar from './Searchbar/Searchbar';
+import { fetchImages } from './ServiceApi/ServiceApi';
 
 export class App extends Component {
 

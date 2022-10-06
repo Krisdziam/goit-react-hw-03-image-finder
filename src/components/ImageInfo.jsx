@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import ImageGallery from './ImageGallery/ImageGallery';
+import ImageGalleryItem from './ImageGalleryItem/ImageGalleryItem';
 import Searchbar from './Searchbar/Searchbar';
-import {api} from './ServiceApi/ServiceApi';
+import { fetchImages } from './ServiceApi/ServiceApi';
 
 class ImageInfo extends Component {
   state = {
@@ -10,41 +12,72 @@ class ImageInfo extends Component {
     isLoading: false,
     error: null,
     modalOpen: false,
-    modalImage: {},
+    modalImage: '',
+    status: 'IDLE',
   };
-  formSubmitHandler = data => {
-    console.log(data);
-  };
-
-  async loadImages() {
+  formSubmitHandler = searchName => {
     this.setState({
-      isLoading: true,
+      imageName: searchName,
     });
-    const { imageName, page } = this.state;
-
-    try {
-      await api(imageName, page);
-      this.setState(({ items }) => {
-        return {
-          items: [...items, api.hits],
-        };
-      });
-    } catch (error) {
+    console.log(searchName);
+  };
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.imageName !== this.state.imageName) {
       this.setState({
-        error: error,
+        page: 1,
+        isLoading: true,
+        status: 'PENDING',
       });
-    } finally {
-      this.setState({ isLoading: false });
+      fetchImages(prevState.imageName)
+        .then(data =>
+          this.setState({
+            items: data.hits,
+            status: 'RESOLVED',
+          })
+        )
+        .catch(error =>
+          this.setState({ error, status: 'REJECTED' })
+        )
+        .finally(() => this.setState({ isLoading: false }));
     }
   }
 
   render() {
-    return (
-      <>
-        <Searchbar onSubmit={this.formSubmitHandler} />
-        {/* <ServiceApi/>  */}
-      </>
-    );
+    const {
+      imageName,
+      page,
+      items,
+      isLoading,
+      error,
+      modalOpen,
+      modalImage,
+      status,
+    } = this.state;
+    if (this.state.modalImage === '') {
+      return (
+        <Searchbar
+          onSubmit={this.formSubmitHandler}
+        ></Searchbar>
+      );
+    }
+
+    if (this.state.status === 'RESOLVED') {
+      return (
+        <>
+        <div>{items.map((image)=>{
+          <p>{image.type}</p>
+        })}</div>
+          {/* <ImageGallery>
+            {items.map(image => (
+              <ImageGalleryItem
+                key={image.id}
+                data={image}
+              />
+            ))}
+          </ImageGallery> */}
+        </>
+      );
+    }
   }
 }
 export default ImageInfo;

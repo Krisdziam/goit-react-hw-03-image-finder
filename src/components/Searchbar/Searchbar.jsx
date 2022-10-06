@@ -1,18 +1,24 @@
 import React, { Component } from 'react';
 import styles from '../Searchbar/Searchbar.module.css'
+
+
+
 export default class Searchbar extends Component {
   state = {
     imageName: '',
   };
 
   handleInputChange = e => {
-    const { value } = e.target;
-    this.setState({ imageName: value });
+  
+    this.setState({ imageName: e.currentTarget.value.toLowerCase() });
   };
 
   handleSubmitForm = e => {
     e.preventDefault();
-    this.props.onSubmit(this.state);
+    if(this.state.imageName.trim() === ''){
+      return alert('Please, enter name')
+    }
+    this.props.onSubmit(this.state.imageName);
     this.reset();
   };
 
