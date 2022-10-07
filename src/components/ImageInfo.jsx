@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Button from './Button/Button';
 import ImageGallery from './ImageGallery/ImageGallery';
 import ImageGalleryItem from './ImageGalleryItem/ImageGalleryItem';
-import Container from './Loader/Container';
 import Loader from './Loader/Loader';
 import Modal from './Modal/Modal';
 import { fetchImages } from './ServiceApi/ServiceApi';
@@ -148,7 +147,7 @@ class ImageInfo extends Component {
             <Button onClick={this.handleLoadMore}>
               {isLoading && <Loader />}
             </Button>
-            <ScrollToTop smooth />
+           
         </>
       );
     }
