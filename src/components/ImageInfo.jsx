@@ -6,8 +6,8 @@ import Loader from './Loader/Loader';
 import Modal from './Modal/Modal';
 import { fetchImages } from './ServiceApi/ServiceApi';
 
-import styles from './ImageInfo.module.css'
-import { MdOutlinePhotoSizeSelectActual } from "react-icons/md";
+import styles from './ImageInfo.module.css';
+import { MdOutlinePhotoSizeSelectActual } from 'react-icons/md';
 
 // import ScrollToTop from "react-scroll-to-top";
 
@@ -107,13 +107,14 @@ class ImageInfo extends Component {
     if (status === 'idle') {
       return (
         <p className={styles.findText}>
-    <MdOutlinePhotoSizeSelectActual  /> Find your best images!
+          <MdOutlinePhotoSizeSelectActual /> Find your best
+          images!
         </p>
       );
     }
 
     if (status === 'pending') {
-      return <p>Loading</p>;
+      return <Loader />;
     }
 
     if (status === 'rejected' || items.length === 0) {
@@ -143,11 +144,9 @@ class ImageInfo extends Component {
             ))}
           </ImageGallery>
 
-   
-            <Button onClick={this.handleLoadMore}>
-              {isLoading && <Loader />}
-            </Button>
-           
+          <Button onClick={this.handleLoadMore}>
+            {isLoading && <Loader />}
+          </Button>
         </>
       );
     }

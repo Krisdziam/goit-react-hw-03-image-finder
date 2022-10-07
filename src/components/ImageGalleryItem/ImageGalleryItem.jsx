@@ -1,3 +1,5 @@
+import styles from './ImageGalleryItem.module.css'
+
 const ImageGalleryItem = ({ data, onImageClick}) => {
     const {
       webformatURL,
@@ -11,9 +13,9 @@ const onImageModalOpenClick = ()=>{
 }
 
     return (
-        <li >
+        <li className={styles.item}>
           <img
-           
+           className={styles.image}
             src={webformatURL}
             alt={type}
             onClick={onImageModalOpenClick}
