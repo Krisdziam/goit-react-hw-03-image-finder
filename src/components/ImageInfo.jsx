@@ -3,14 +3,10 @@ import Button from './Button/Button';
 import ImageGallery from './ImageGallery/ImageGallery';
 import ImageGalleryItem from './ImageGalleryItem/ImageGalleryItem';
 import Loader from './Loader/Loader';
-
 import Modal from './Modal/Modal';
 import { fetchImages } from './ServiceApi/ServiceApi';
-
 import styles from './ImageInfo.module.css';
 import { MdOutlinePhotoSizeSelectActual } from 'react-icons/md';
-
-// import ScrollToTop from "react-scroll-to-top";
 
 class ImageInfo extends Component {
   state = {
@@ -20,7 +16,7 @@ class ImageInfo extends Component {
     isLoading: false,
     error: null,
     modalOpen: false,
-    modalImage: '',
+    largeImageURL: '',
     status: 'idle',
   };
 
@@ -73,20 +69,13 @@ class ImageInfo extends Component {
     }));
   };
 
-  onGalleryItemClick = modalImage => {
+  onGalleryItemClick = largeImageURL => {
     this.setState({
-      modalImage,
-
+      largeImageURL,
       modalOpen: true,
     });
   };
 
-  // scrollOnLoadButton = () => {
-  //   window.scrollTo({
-  //     top: document.documentElement.scrollHeight,
-  //     behavior: 'smooth',
-  //   });
-  // };
   resetPage = () => {
     this.setState({
       page: 1,
@@ -95,21 +84,20 @@ class ImageInfo extends Component {
 
   render() {
     const {
-      imageName,
-      page,
       items,
       isLoading,
-      error,
       modalOpen,
-      modalImage,
+      largeImageURL,
       status,
     } = this.state;
 
     if (status === 'idle') {
       return (
         <p className={styles.findText}>
-          <MdOutlinePhotoSizeSelectActual className={styles.findIcon}/> Find your best
-          images!
+          <MdOutlinePhotoSizeSelectActual
+            className={styles.findIcon}
+          />
+          Find your best images!
         </p>
       );
     }
@@ -121,7 +109,8 @@ class ImageInfo extends Component {
     if (status === 'rejected' || items.length === 0) {
       return (
         <h1 className={styles.title}>
-        We can not find images with "{this.props.imageName}" name. Try another one!
+          We can not find images with "
+          {this.props.imageName}" name. Try another one!
         </h1>
       );
     }
@@ -131,14 +120,14 @@ class ImageInfo extends Component {
         <>
           {modalOpen && (
             <Modal
-              modalImage={modalImage}
+              largeImageURL={largeImageURL}
               onClose={this.openModal}
             />
           )}
           <ImageGallery>
             {items.map(image => (
               <ImageGalleryItem
-              onImageClick={this.onGalleryItemClick}
+                onImageClick={this.onGalleryItemClick}
                 key={image.id}
                 data={image}
               />

@@ -29,13 +29,13 @@ class Modal extends Component {
   };
 
   render() {
-    const { modalImage, type } = this.props;
+    const { largeImageURL, type } = this.props;
   
     return createPortal(
-      <div onClick={this.onBackdropClick} className={styles.ModalBackdrop}>
-        <div className={styles.ImageModal}>
+      <div onClick={this.onBackdropClick} className={styles.modalBackdrop}>
+        <div className={styles.modalImage}>
        
-          <img src={modalImage} alt={type} />
+          <img src={largeImageURL} alt={type} />
          
         </div>
       </div>,

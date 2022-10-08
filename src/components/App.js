@@ -1,18 +1,16 @@
 import React, { Component } from 'react';
-
 import ImageInfo from './ImageInfo';
-
 import Searchbar from './Searchbar/Searchbar';
 
 export class App extends Component {
   state = {
     imageName: '',
   };
-  formSubmitHandler = searchName => {
+  formSubmitHandler = imageName => {
     this.setState({
-      imageName: searchName,
+      imageName,
     });
-    console.log(searchName);
+ 
   };
   render() {
     return (

@@ -1,21 +1,22 @@
-.ModalBackdrop {
-    position: fixed;
-    z-index: 100;
+
+.modalBackdrop {
     width: 100vw;
     height: 100vh;
+    position: fixed;
     top: 0;
     left: 0;
-    background-color: rgba(129, 129, 129, 0.5);
-  }
   
-  .ImageModal {
-    position: relative;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    min-height: 400px;
-    max-width: 1000px;
-    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0,0,0,.8);
+    z-index: 1200;
 
-  }
-  
+}
+
+.modalImage {
+
+
+    max-height: calc(100vh - 24px);
+    max-width: calc(100vw - 48px);
+}

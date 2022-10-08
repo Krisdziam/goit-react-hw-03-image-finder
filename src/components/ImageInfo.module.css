@@ -6,11 +6,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-
 }
 
-.findIcon{
-    margin-right: 5px;
+.findIcon {
+  margin-right: 5px;
 }
 
 .title {
