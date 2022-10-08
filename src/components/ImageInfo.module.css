@@ -1,9 +1,20 @@
-.findText{
-    padding-top: 10px;
-text-align: center;
-font-size: 24px;
-color: rgb(53, 66, 53);
-display: flex;
-align-items: center;
-justify-content: center;
+.findText {
+  padding-top: 10px;
+  text-align: center;
+  font-size: 24px;
+  color: rgb(53, 66, 53);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.findIcon{
+    margin-right: 5px;
+}
+
+.title {
+  padding-top: 10px;
+  text-align: center;
+  color: rgb(53, 66, 53);
 }

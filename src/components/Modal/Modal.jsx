@@ -1,42 +1,42 @@
 import { Component } from "react";
 import { createPortal } from "react-dom";
-// import { FiXCircle } from "react-icons/fi";
+
+import styles from './Modal.module.css';
+
 
 
 const modalRoot = document.querySelector("#modal-root");
 
 class Modal extends Component {
   componentDidMount() {
-    window.addEventListener("keydown", this.handleKeydownClose);
+    window.addEventListener("keydown", this.onEscClose);
   }
 
   componentWillUnmount() {
-    window.removeEventListener("keydown", this.handleKeydownClose);
+    window.removeEventListener("keydown", this.onEscClose);
   }
 
-  handleKeydownClose = (e) => {
+  onEscClose = (e) => {
     if (e.code === "Escape") {
       this.props.onClose();
     }
   };
 
-  handleBackdropClick = (e) => {
+  onBackdropClick = (e) => {
     if (e.currentTarget === e.target) {
       this.props.onClose();
     }
   };
 
   render() {
-    const { largeImage, type, tag, onClose } = this.props;
-    console.log(tag);
+    const { modalImage, type } = this.props;
+  
     return createPortal(
-      <div onClick={this.handleBackdropClick} >
-        <div >
-          <button onClick={onClose}  type="button">
-            {/* <FiXCircle size="50px" /> */}
-          </button>
-          <img src={largeImage} alt={type} />
-          <span >{tag}</span>
+      <div onClick={this.onBackdropClick} className={styles.ModalBackdrop}>
+        <div className={styles.ImageModal}>
+       
+          <img src={modalImage} alt={type} />
+         
         </div>
       </div>,
       modalRoot

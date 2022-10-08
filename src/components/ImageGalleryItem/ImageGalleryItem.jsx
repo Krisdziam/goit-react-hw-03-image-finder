@@ -3,14 +3,14 @@ import styles from './ImageGalleryItem.module.css'
 const ImageGalleryItem = ({ data, onImageClick}) => {
     const {
       webformatURL,
-      largeImageURL,
+      modalImage,
       type,
       
     } = data;
 
-const onImageModalOpenClick = ()=>{
-    onImageClick(largeImageURL)
-}
+
+const onImageModalOpenClick = ()=> onImageClick(modalImage);
+
 
     return (
         <li className={styles.item}>

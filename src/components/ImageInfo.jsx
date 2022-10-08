@@ -73,20 +73,20 @@ class ImageInfo extends Component {
     }));
   };
 
-  handleGalleryItem = modalImage => {
+  onGalleryItemClick = modalImage => {
     this.setState({
-      modalImage: modalImage,
+      modalImage,
 
       modalOpen: true,
     });
   };
 
-  scrollOnLoadButton = () => {
-    window.scrollTo({
-      top: document.documentElement.scrollHeight,
-      behavior: 'smooth',
-    });
-  };
+  // scrollOnLoadButton = () => {
+  //   window.scrollTo({
+  //     top: document.documentElement.scrollHeight,
+  //     behavior: 'smooth',
+  //   });
+  // };
   resetPage = () => {
     this.setState({
       page: 1,
@@ -108,7 +108,7 @@ class ImageInfo extends Component {
     if (status === 'idle') {
       return (
         <p className={styles.findText}>
-          <MdOutlinePhotoSizeSelectActual /> Find your best
+          <MdOutlinePhotoSizeSelectActual className={styles.findIcon}/> Find your best
           images!
         </p>
       );
@@ -120,9 +120,8 @@ class ImageInfo extends Component {
 
     if (status === 'rejected' || items.length === 0) {
       return (
-        <h1>
-          Oops... we don't have "{this.props.imageName}" in
-          database
+        <h1 className={styles.title}>
+        We can not find images with "{this.props.imageName}" name. Try another one!
         </h1>
       );
     }
@@ -139,6 +138,7 @@ class ImageInfo extends Component {
           <ImageGallery>
             {items.map(image => (
               <ImageGalleryItem
+              onImageClick={this.onGalleryItemClick}
                 key={image.id}
                 data={image}
               />
